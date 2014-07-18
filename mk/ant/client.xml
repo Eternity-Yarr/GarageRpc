@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<project name="garagerpcexample" default="" basedir=".">
+	<!--
+		Common
+		======
+	-->
+	<property name="r" location="./../.."/>
+
+	<property name="gwt.sdk" location="${r}/ext/gwt"/>
+
+	<property name="shared" location="${r}/src/shared"/>
+	<property name="shared.src" location="${shared}/main/java"/>
+
+	<property name="client" location="${r}/src/client"/>
+	<property name="client.src" location="${client}/main/java"/>
+
+	<property name="webbitclient" location="${r}/src/webbit-client"/>
+	<property name="webbitclient.src" location="${webbitclient}/main/java"/>
+
+	<property name="sharedexample" location="${r}/src/example-shared"/>
+	<property name="sharedexample.src" location="${sharedexample}/main/java"/>
+
+	<property name="example" location="${r}/src/example-client"/>
+	<property name="example.src" location="${example}/main/java"/>
+	<property name="example.war" location="${example}/main/war"/>
+
+	<property name="out" location="${r}/out/gwt-example"/>
+	<property name="out.war" location="${out}/war"/>
+	<property name="out.classes" location="${out}/war/WEB-INF/classes"/>
+	<property name="out.tmp" location="${out}/tmp"/>
+
+	<target name="clean" description="Cleans this project">
+		<delete dir="${out}"/>
+	</target>
+	<!---->
+
+
+	<!--
+		Rel
+		===
+	-->
+	<path id="gwt.classpath">
+		<pathelement location="${gwt.sdk}/gwt-user.jar"/>
+		<fileset dir="${gwt.sdk}" includes="gwt-dev*.jar"/>
+
+		<pathelement location="${r}/ext/client/gwtquery-1.4.0.jar"/>
+		<pathelement location="${r}/ext/client/restygwt-1.3.jar"/>
+
+		<pathelement location="${out.classes}"/>
+	</path>
+
+	<target name="example-javac">
+		<mkdir dir="${out.war}"/>
+		<mkdir dir="${out.classes}"/>
+		<mkdir dir="${out.tmp}"/>
+
+		<javac srcdir="${shared.src};${client.src};${webbitclient.src};${sharedexample.src};${example.src}" includes="**" encoding="utf-8"
+			destdir="${out.classes}"
+			source="1.7" target="1.7" nowarn="false"
+			debug="true" debuglevel="lines,vars,source"
+			includeantruntime="false"
+			fork="true">
+
+			<classpath>
+				<path refid="gwt.classpath"/>
+				<pathelement path="${out.classes}"/>
+			</classpath>
+		</javac>
+
+		<copy todir="${out.war}/">
+			<fileset dir="${example.war}"/>
+		</copy>
+	</target>
+
+  <target name="example-rel" depends="example-javac">
+    <java failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
+      <classpath>
+				<pathelement location="${gwt.sdk}validation-api-1.0.0.GA.jar" />
+				<pathelement location="${gwt.sdk}validation-api-1.0.0.GA-sources.jar" />
+				<path refid="gwt.classpath"/>
+
+				<pathelement location="${shared.src}"/>
+				<pathelement location="${client.src}"/>
+				<pathelement location="${webbitclient.src}"/>
+				<pathelement location="${sharedexample.src}"/>
+				<pathelement location="${example.src}"/>
+      </classpath>
+      <jvmarg value="-Xmx256M"/>
+      <arg line="-workDir ${out.tmp}"/>
+      <arg line="-war ${out.war}"/>
+      <!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
+      <arg value="name.ltp.garagerpc.example.ClientExample"/>
+    </java>
+  </target>
+	<!---->
+</project>

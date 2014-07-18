@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../src/example-client">
+      <sourceFolder url="file://$MODULE_DIR$/../../src/example-client/main/java" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="client" />
+    <orderEntry type="module" module-name="shared" />
+    <orderEntry type="library" name="gwt" level="project" />
+    <orderEntry type="library" name="gwtquery-1.4.0" level="project" />
+    <orderEntry type="library" name="restygwt-1.3" level="project" />
+    <orderEntry type="module" module-name="example-shared" />
+    <orderEntry type="module" module-name="webbit-client" />
+  </component>
+</module>
+

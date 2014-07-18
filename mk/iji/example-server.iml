@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../src/example-server">
+      <sourceFolder url="file://$MODULE_DIR$/../../src/example-server/main/java" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="server" />
+    <orderEntry type="module" module-name="shared" />
+    <orderEntry type="library" name="serverdeps" level="project" />
+    <orderEntry type="library" name="webbit" level="project" />
+    <orderEntry type="module" module-name="example-shared" />
+    <orderEntry type="module" module-name="webbit-server" />
+  </component>
+</module>
+
